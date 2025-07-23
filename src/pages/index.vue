@@ -176,7 +176,7 @@
 </template>
 
 <script setup lang='ts'>
-import { ref, reactive, computed, watch } from 'vue';
+// import { ref, reactive, computed, watch } from 'vue';
 
 // 或者更安全的写法，防止初始化时 setting 尚未加载
 onMounted(() => {
@@ -198,50 +198,50 @@ const goToWebsite = (url: string) => {
 }
 
 // 筛选显示启用的工具
-const filteredTools = computed(() => {
-    return setting.value.xgtools.list.filter(tool => tool.enabled);
-});
+// const filteredTools = computed(() => {
+//     return setting.value.xgtools.list.filter(tool => tool.enabled);
+// });
 
 // 搜索相关
-const searchQuery = ref('');
+// const searchQuery = ref('');
 
-const SEList: any = {
-    "Google": {
-        "name": "Google",
-        "url": "https://www.google.com/search?q=",
-        "icon": "i-pajamas-google"
-    },
-    "Bing": {
-        "name": "Bing",
-        "url": "https://cn.bing.com/search?q=",
-        "icon": "i-simple-icons-microsoftbing"
-    },
-    "Baidu": {
-        "name": "百度",
-        "url": "https://www.baidu.com/s?wd=",
-        "icon": "i-ri-baidu-line"
-    },
-    "Sogou": {
-        "name": "搜狗",
-        "url": "https://www.sogou.com/web?query=",
-        "icon": "i-cib-sogou"
-    },
-    "Yandex": {
-        "name": "Yandex",
-        "url": "https://www.yandex.com/search/?text=",
-        "icon": "i-vscode-icons-file-type-yandex"
-    }
-};
+// const SEList: any = {
+//     "Google": {
+//         "name": "Google",
+//         "url": "https://www.google.com/search?q=",
+//         "icon": "i-pajamas-google"
+//     },
+//     "Bing": {
+//         "name": "Bing",
+//         "url": "https://cn.bing.com/search?q=",
+//         "icon": "i-simple-icons-microsoftbing"
+//     },
+//     "Baidu": {
+//         "name": "百度",
+//         "url": "https://www.baidu.com/s?wd=",
+//         "icon": "i-ri-baidu-line"
+//     },
+//     "Sogou": {
+//         "name": "搜狗",
+//         "url": "https://www.sogou.com/web?query=",
+//         "icon": "i-cib-sogou"
+//     },
+//     "Yandex": {
+//         "name": "Yandex",
+//         "url": "https://www.yandex.com/search/?text=",
+//         "icon": "i-vscode-icons-file-type-yandex"
+//     }
+// };
 
 
 // 将 SE 对象的键转换为选项数组
-const searchEngineOptions = computed(() => {
-    return Object.keys(SEList).map(key => ({
-        label: SEList[key].name,
-        value: key,
-        icon: SEList[key].icon
-    }));
-});
+// const searchEngineOptions = computed(() => {
+//     return Object.keys(SEList).map(key => ({
+//         label: SEList[key].name,
+//         value: key,
+//         icon: SEList[key].icon
+//     }));
+// });
 
 
 // 使用 useLocalStorage 创建响应式的本地存储变量
@@ -339,112 +339,112 @@ const setting = useLocalStorage('Settings', {
 })
 
 // 执行搜索
-const performSearch = () => {
-    let se = setting.value.setting.SE
-    if (searchQuery.value.trim()) {
-        const searchUrl = `${SEList[se].url}${encodeURIComponent(searchQuery.value.trim())}`;
-        window.open(searchUrl, '_blank');
-        searchQuery.value = '';
-    }
-}
+// const performSearch = () => {
+//     let se = setting.value.setting.SE
+//     if (searchQuery.value.trim()) {
+//         const searchUrl = `${SEList[se].url}${encodeURIComponent(searchQuery.value.trim())}`;
+//         window.open(searchUrl, '_blank');
+//         searchQuery.value = '';
+//     }
+// }
 
 // 导航菜单项
-const navigationItems = ref([
-    {
-        value: 'settings',
-        label: '设置',
-        icon: 'i-tabler-settings',
-    },
-    {
-        value: 'websites',
-        label: '网站',
-        icon: 'i-tabler-app-window',
-    },
-    {
-        value: 'xgtools',
-        label: 'XGTools',
-        icon: 'i-tabler-tools',
-    }
-]);
+// const navigationItems = ref([
+//     {
+//         value: 'settings',
+//         label: '设置',
+//         icon: 'i-tabler-settings',
+//     },
+//     {
+//         value: 'websites',
+//         label: '网站',
+//         icon: 'i-tabler-app-window',
+//     },
+//     {
+//         value: 'xgtools',
+//         label: 'XGTools',
+//         icon: 'i-tabler-tools',
+//     }
+// ]);
 
 // 当前激活的设置部分
-const activeSection = ref('settings');
+// const activeSection = ref('settings');
 
 // 新网站表单
-const newWebsite = reactive({
-    name: '',
-    url: '',
-    icon: ''
-});
+// const newWebsite = reactive({
+//     name: '',
+//     url: '',
+//     icon: ''
+// });
 
 // 添加网站
-const addWebsite = () => {
-    if (newWebsite.name && newWebsite.url) {
-        // 检查 URL 格式
-        if (!newWebsite.url.startsWith('http')) {
-            newWebsite.url = 'https://' + newWebsite.url;
-        }
+// const addWebsite = () => {
+//     if (newWebsite.name && newWebsite.url) {
+//         // 检查 URL 格式
+//         if (!newWebsite.url.startsWith('http')) {
+//             newWebsite.url = 'https://' + newWebsite.url;
+//         }
 
-        // 添加到网站列表
-        setting.value.websites.list.push({
-            name: newWebsite.name,
-            url: newWebsite.url,
-            icon: newWebsite.icon || 'i-tabler-world-www' // 默认图标
-        });
+//         // 添加到网站列表
+//         setting.value.websites.list.push({
+//             name: newWebsite.name,
+//             url: newWebsite.url,
+//             icon: newWebsite.icon || 'i-tabler-world-www' // 默认图标
+//         });
 
-        // 重置表单
-        newWebsite.name = '';
-        newWebsite.url = '';
-        newWebsite.icon = '';
-    }
-};
+//         // 重置表单
+//         newWebsite.name = '';
+//         newWebsite.url = '';
+//         newWebsite.icon = '';
+//     }
+// };
 
 // 编辑网站相关
-const showEditModal = ref(false);
-const editingIndex = ref(-1);
-const editingWebsite = reactive({
-    name: '',
-    url: '',
-    icon: ''
-});
+// const showEditModal = ref(false);
+// const editingIndex = ref(-1);
+// const editingWebsite = reactive({
+//     name: '',
+//     url: '',
+//     icon: ''
+// });
 
-// 编辑网站
-const editWebsite = (index: number) => {
-    editingIndex.value = index;
-    const site = setting.value.websites.list[index];
-    editingWebsite.name = site.name;
-    editingWebsite.url = site.url;
-    editingWebsite.icon = site.icon;
-    showEditModal.value = true;
-};
+// // 编辑网站
+// const editWebsite = (index: number) => {
+//     editingIndex.value = index;
+//     const site = setting.value.websites.list[index];
+//     editingWebsite.name = site.name;
+//     editingWebsite.url = site.url;
+//     editingWebsite.icon = site.icon;
+//     showEditModal.value = true;
+// };
 
-// 保存编辑的网站
-const saveEditedWebsite = () => {
-    if (editingIndex.value >= 0 && editingWebsite.name && editingWebsite.url) {
-        // 检查 URL 格式
-        if (!editingWebsite.url.startsWith('http')) {
-            editingWebsite.url = 'https://' + editingWebsite.url;
-        }
+// // 保存编辑的网站
+// const saveEditedWebsite = () => {
+//     if (editingIndex.value >= 0 && editingWebsite.name && editingWebsite.url) {
+//         // 检查 URL 格式
+//         if (!editingWebsite.url.startsWith('http')) {
+//             editingWebsite.url = 'https://' + editingWebsite.url;
+//         }
 
-        // 更新网站信息
-        setting.value.websites.list[editingIndex.value] = {
-            name: editingWebsite.name,
-            url: editingWebsite.url,
-            icon: editingWebsite.icon || 'i-tabler-world-www'
-        };
+//         // 更新网站信息
+//         setting.value.websites.list[editingIndex.value] = {
+//             name: editingWebsite.name,
+//             url: editingWebsite.url,
+//             icon: editingWebsite.icon || 'i-tabler-world-www'
+//         };
 
-        showEditModal.value = false;
-        editingIndex.value = -1;
-        editingWebsite.name = '';
-        editingWebsite.url = '';
-        editingWebsite.icon = '';
-    }
-};
+//         showEditModal.value = false;
+//         editingIndex.value = -1;
+//         editingWebsite.name = '';
+//         editingWebsite.url = '';
+//         editingWebsite.icon = '';
+//     }
+// };
 
-// 删除网站
-const removeWebsite = (index: number) => {
-    setting.value.websites.list.splice(index, 1);
-};
+// // 删除网站
+// const removeWebsite = (index: number) => {
+//     setting.value.websites.list.splice(index, 1);
+// };
 
 </script>
 
