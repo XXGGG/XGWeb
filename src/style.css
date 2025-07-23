@@ -1,0 +1,22 @@
+/* style.css */
+html,
+body,
+#app {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+html.dark {
+  background: #121212;
+  color-scheme: dark;
+}
+
+body {
+  background-image: url("/bg.svg");
+  background-size: 40px 40px;
+}
+
+.dark body {
+  background-image: url("/bg-dark.svg");
+}
