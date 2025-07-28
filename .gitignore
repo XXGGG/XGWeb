@@ -1,3 +1,7 @@
+auto-imports.d.ts
+components.d.ts
+typed-router.d.ts
+
 # Logs
 logs
 *.log
@@ -23,4 +27,3 @@ dist-ssr
 *.sln
 *.sw?
 
-CLAUDE.md

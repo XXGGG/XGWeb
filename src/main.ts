@@ -6,6 +6,7 @@ import { routes } from 'vue-router/auto-routes'  // 导入生成的路由
 
 import '@unocss/reset/tailwind.css' //重置样式表
 import 'uno.css' // 导入Unocss
+// import "virtual:uno.css";
 import './style.css'
 
 import { createHead } from '@unhead/vue'

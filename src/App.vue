@@ -1,5 +1,5 @@
 <template>
-  <nav w-100vw h-20 flex justify-between items-center position-fixed top px-8>
+  <nav w-100vw h-20 flex justify-between items-center position-fixed top px-6>
     <div>
       <RouterLink icon-btn to='/'>
         <div i-tabler-tools />
