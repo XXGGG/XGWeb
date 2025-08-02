@@ -6,10 +6,21 @@
             class="form-control w-full max-w-md mx-auto relative  items-center" mt-100px>
             <Input id="search" type="text" placeholder="" class=" p-5 pl-10" v-model="searchQuery"
                 @keyup.enter="performSearch" />
-            <span class="absolute start-0 inset-y-0 flex items-center justify-center px-2">
-                <div :class="SEList[setting.setting.SE]?.icon" class="size-6 text-muted-foreground"></div>
-            </span>
+            <DropdownMenu>
+                <DropdownMenuTrigger class="absolute start-0 inset-y-0 flex items-center justify-center px-2">
+                    <div :class="SEList[setting.setting.SE]?.icon" class="size-6 text-muted-foreground"></div>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                    <DropdownMenuItem v-for="item in searchEngineOptions" :key="item.value"
+                        @click="setting.setting.SE = item.value"
+                        :class="{ 'bg-accent': setting.setting.SE === item.value }">
+                        <div :class="item.icon" class="size-4 mr-2"></div>
+                        {{ item.label }}
+                    </DropdownMenuItem>
+                </DropdownMenuContent>
+            </DropdownMenu>
         </div>
+
         <div v-if="setting.setting.SE != '' && setting.setting.simplify" h-100vh flex justify-center items-center>
             <div class="form-control w-full max-w-xl ma relative  items-center">
                 <Input id="search" type="text" placeholder="" class="p-5 pl-10" v-model="searchQuery"
@@ -19,12 +30,9 @@
                         <div :class="SEList[setting.setting.SE]?.icon" class="size-6 text-muted-foreground"></div>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent>
-                        <DropdownMenuItem 
-                            v-for="item in searchEngineOptions" 
-                            :key="item.value" 
+                        <DropdownMenuItem v-for="item in searchEngineOptions" :key="item.value"
                             @click="setting.setting.SE = item.value"
-                            :class="{ 'bg-accent': setting.setting.SE === item.value }"
-                        >
+                            :class="{ 'bg-accent': setting.setting.SE === item.value }">
                             <div :class="item.icon" class="size-4 mr-2"></div>
                             {{ item.label }}
                         </DropdownMenuItem>
@@ -32,6 +40,7 @@
                 </DropdownMenu>
             </div>
         </div>
+
         <!-- Web 快捷方式区域 -->
         <Transition name="show">
             <div class="main" v-if="setting.setting.showwebsites && !setting.setting.simplify">
